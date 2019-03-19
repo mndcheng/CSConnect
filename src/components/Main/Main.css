@@ -1,0 +1,49 @@
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  animation: App-logo-spin infinite 20s linear;
+  height: 80px;
+}
+
+.App-header {
+  background-color: #222;
+  height: 150px;
+  padding: 20px;
+  color: white;
+}
+
+.App-intro {
+  font-size: large;
+}
+
+@keyframes App-logo-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.navigation {
+  background-color: #1F5648 !important;
+}
+
+.navigation a {
+  color: #FFFFFF !important;
+  background-color: unset !important;
+}
+
+.navigation .active > a {
+  color: #E9BA2B !important;
+}
+
+.navigation a:hover {
+  color: #E9BA2B !important;
+  text-decoration: underline !important;
+}
+
+.navigation .cpConnect,
+.navigation .cpConnect.active > a,
+.navigation .cpConnect a:hover {
+  color: #FFFFFF !important;
+  text-decoration: none !important;
+}
