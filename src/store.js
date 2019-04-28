@@ -1,19 +1,15 @@
-import { createStore, applyMiddleware } from 'redux';
-// import { syncHistoryWithStore} from 'react-router-redux';
-import { createBrowserHistory } from 'history';
-// import the root reducer
 import thunk from 'redux-thunk';
+import { createBrowserHistory } from 'history';
+import { createStore, applyMiddleware } from 'redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
 
-// redux persist components
-import { persistStore, persistReducer } from 'redux-persist';
-// defaults to localStorage for web and AsyncStorage for react-native
 import storage from 'redux-persist/lib/storage';
+import { persistStore, persistReducer } from 'redux-persist';
 
 import rootReducer from './reducers/index';
+import fbConfig from './config/firebaseConfig'
 import { reduxFirestore, getFirestore } from 'redux-firestore'
 import { reactReduxFirebase, getFirebase } from  'react-redux-firebase'
-import fbConfig from './config/firebaseConfig'
 
 const persistConfig = {
    active: true,
@@ -35,12 +31,9 @@ function createThunkMiddleware(extraArgument) {
 
 thunk.withExtraArgument = createThunkMiddleware;
 
-
 const persistedReducer = persistReducer(persistConfig, rootReducer);
 const defaultState = {};
 
-// const store = createStore(rootReducer, defaultState,
-//  composeWithDevTools(applyMiddleware(thunk)));
 const store = createStore(persistedReducer, defaultState,
  composeWithDevTools(applyMiddleware(thunk.withExtraArgument({getFirestore, getFirebase})),
    reduxFirestore(fbConfig),
@@ -50,9 +43,7 @@ const store = createStore(persistedReducer, defaultState,
 
 if (module.hot) {
    module.hot.accept('./reducers/',() => {
-      // const nextRootReducer = require('./reducers/index').default;
       const nextRootReducer = persistReducer(persistConfig, rootReducer);
-      // console.log("NEXT ROOT REDUCER", nextRootReducer);
       store.replaceReducer(nextRootReducer);
    });
 }
