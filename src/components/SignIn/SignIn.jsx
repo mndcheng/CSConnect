@@ -11,7 +11,7 @@ class SignIn extends Component {
 
       // Current login state
       this.state = {
-         email: 'admin@admin.com',
+         email: 'mytest3@email.com',
          password: 'password'
       }
 
