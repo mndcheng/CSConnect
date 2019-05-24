@@ -109,7 +109,7 @@ const CnvItem = function(props) {
       <ListGroupItem>
          <Row>
             <Col sm={COL_SIZE_1}>
-               <Link to={{
+               <Link className="userCnv" to={{
                   pathname: "/msg/" + props.cnv.id,
                   state: {
                      cnvID: props.cnv.id

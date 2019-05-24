@@ -6,7 +6,7 @@ import { ConfDialog } from '../index';
 import './ResourceOverview.css';
 import ResourceModal from './ResourceModal';
 
-const COL_SIZE = 8;
+const COL_SIZE = 12;
 
 export default class ResourceOverview extends Component {
    constructor(props) {
@@ -57,25 +57,24 @@ export default class ResourceOverview extends Component {
 
    render() {
       console.log("Rerendering ResourceOverview");
-      var resourceItems = [];
-
-      this.props.Resources.forEach(resource => {
-         resourceItems.push(<RsrcItem
-            key={resource.id || "1"}
-            resource={resource}
-            link={resource.link}
-            title={resource.title}
-            clicked={this.linkClicked.bind(this)}
-            role={this.props.Prss.role}
-            show={resource.show}
-            toggleDisplay={() => this.toggleDisplay(resource)}
-         />);
-      });
 
       return (
          <section className="container">
             <h1>Resources</h1>
-            <ListGroup>{resourceItems}</ListGroup>
+            <div id="mainContent" className="gridContainer" style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gridGap: '10px', gridAutoRows: 'minMax(100px, auto)' }}>
+               {this.props.Resources.map((resource) => (
+                  <RsrcItem
+                     key={resource.id || "1"}
+                     resource={resource}
+                     link={resource.link}
+                     title={resource.title}
+                     clicked={this.linkClicked.bind(this)}
+                     role={this.props.Prss.role}
+                     show={resource.show}
+                     toggleDisplay={() => this.toggleDisplay(resource)}
+                  />
+               ))}
+            </div>
             {this.props.Prss.role ?
                <Button
                   bsStyle="primary"
@@ -103,37 +102,40 @@ export default class ResourceOverview extends Component {
 // A Resource list item
 const RsrcItem = function (props) {
    return (
-      <ListGroupItem>
-         <Row>
-            <Col sm={COL_SIZE}>
-               <a
+      <ListGroupItem className="resourceItems">
+            <Row>
+               <Col sm={COL_SIZE} className="resourceTitles">
+                  <a
+                  className="resourceLink"
                   href={props.link}
                   target="_blank"
                   onClick={() =>
                    props.clicked(props.resource.id, props.resource.numClicks)}>
                   {props.title}
-               </a>
-            </Col>
-            {props.role ?
-               <div className="pull-right">
-                  {props.show ?
-                     <Button 
-                        bsStyle="danger" 
-                        bsSize="small" 
-                        onClick={props.toggleDisplay}>
-                        Hide
+                  </a>
+               </Col>
+               <div className="hits">Hits: {props.resource.numClicks}</div>
+               {props.role ?
+                  <div className="pull-right">
+                     {props.show ?
+                        <Button
+                           bsStyle="danger"
+                           bsSize="small"
+                           onClick={props.toggleDisplay}>
+                           Hide
                      </Button>
-                     :
-                     <Button 
-                        bsStyle="primary" 
-                        bsSize="small" 
-                        onClick={props.toggleDisplay}>
-                        Show
+                        :
+                        <Button
+                           bsStyle="primary"
+                           bsSize="small"
+                           onClick={props.toggleDisplay}>
+                           Show
                      </Button>
-                  }
-               </div>
-               : ""}
-         </Row>
+                     }
+                  </div>
+                  : ""}
+
+            </Row>
       </ListGroupItem>
    );
 }

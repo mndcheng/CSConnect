@@ -11,8 +11,8 @@ class SignIn extends Component {
 
       // Current login state
       this.state = {
-         email: 'mytest3@email.com',
-         password: 'password'
+         email: '',
+         password: ''
       }
 
       // bind 'this' to the correct context

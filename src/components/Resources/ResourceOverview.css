@@ -1,3 +1,39 @@
 .pull-right {
    margin-right: 5px;
 }
+
+#mainContent.gridContainer::before {
+   content: none;
+}
+
+#mainContent.gridContainer a {
+   font-size: 18px;
+   color: #FFFFFF;
+}
+
+a:hover {
+   text-decoration: none !important;
+}
+
+#mainContent .list-group-item {
+   background-color: #3c7159 !important;
+}
+
+.resourceTitles {
+   margin-bottom: 30px;
+   font-weight: bold;
+   text-transform: uppercase;
+}
+
+.hits {
+   padding-left: 15px;
+   padding-top: 10px;
+   position: absolute;
+   bottom: 0;
+   font-size: 14px;
+   color: #FFFFFF;
+}
+
+.resourceLink {
+   text-decoration: none;
+}

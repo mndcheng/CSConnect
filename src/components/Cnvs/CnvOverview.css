@@ -5,3 +5,12 @@
 .timestamp {
     padding-right: 10px;
 }
+
+.userCnv {
+    color: #000000;
+}
+
+a.userCnv:hover {
+    text-decoration: none;
+    color: #000000;
+}
