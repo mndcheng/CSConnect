@@ -34,6 +34,7 @@ export default class ProfileOverview extends Component {
 
    renderCourses = (courses) => {
       var courseList = [];
+      console.log(courseList)
 
       courses.forEach((course) => {
          courseList.push(course + " ");
